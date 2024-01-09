@@ -19,7 +19,7 @@ def canUnlockAll(boxes):
 
     def unlockboxes(boxes, keys, unlockedboxes):
         for key in keys:
-            if key in unlockedBoxes:
+            if key in unlockedBoxes or key >= len(boxes):
                 continue
             else:
                 unlockedboxes.append(key)
