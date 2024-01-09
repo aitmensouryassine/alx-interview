@@ -4,14 +4,17 @@ containing keys to other elements) are unlocked"""
 
 
 def canUnlockAll(boxes):
-    def explore(box_index, opened_boxes):
-        opened_boxes.add(box_index)
+    # first box is unlocked
+    unlocked_boxes = {0}
 
-        for key in boxes[box_index]:
-            if key < len(boxes) and key not in opened_boxes:
-                explore(key, opened_boxes)
+    # available keys in the firt box
+    keys = boxes[0]
 
-    opened_boxes = set()
-    explore(0, opened_boxes)
+    while keys:
+        key = keys.pop()
 
-    return len(opened_boxes) == len(boxes)
+        if key not in unlocked_boxes and key < len(boxes):
+            unlocked_boxes.add(key)
+            keys.extend(boxes[key])
+
+    return len(unlocked_boxes) == len(boxes)
