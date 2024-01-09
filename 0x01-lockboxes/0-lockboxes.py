@@ -6,6 +6,9 @@ containing keys to other elements) are unlocked"""
 def canUnlockAll(boxes):
     """Check if all boxes are unlocked"""
 
+    if len(boxes) == 0:
+        return False
+
     unlockedBoxes = [0]
 
     def unlockboxes(boxes, keys, unlockedboxes):
