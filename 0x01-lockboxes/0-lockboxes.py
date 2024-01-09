@@ -6,6 +6,12 @@ containing keys to other elements) are unlocked"""
 def canUnlockAll(boxes):
     """Check if all boxes are unlocked"""
 
+    if not isinstance(boxes, list):
+        return False
+
+    if not all(isinstance(box, list) for box in boxes):
+        return False
+
     if len(boxes) == 0:
         return False
 
