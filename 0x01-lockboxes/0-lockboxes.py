@@ -5,16 +5,18 @@ containing keys to other elements) are unlocked"""
 
 def canUnlockAll(boxes):
     """Check if all boxes are unlocked"""
-    unlockedBoxes = [0]
+    def unlock_boxes(boxes, keys, unlocked_boxes):
 
-    def unlockboxes(boxes, keys, unlockedboxes):
+        if len(unlocked_boxes) == len(boxes):
+            return True
+
         for key in keys:
-            if key in unlockedBoxes or key >= len(boxes) or key < 0:
-                continue
-            else:
-                unlockedboxes.append(key)
-                unlockboxes(boxes, boxes[key], unlockedboxes)
+            if key not in unlocked_boxes and key < len(boxes):
+                unlocked_boxes.add(key)
+                if unlock_boxes(boxes, boxes[key], unlocked_boxes):
+                    return True
+        return False
 
-    unlockboxes(boxes, boxes[0], unlockedBoxes)
-
-    return len(unlockedBoxes) == len(boxes)
+    unlocked_boxes = set()
+    unlocked_boxes.add(0)
+    return unlock_boxes(boxes, boxes[0], unlocked_boxes)
