@@ -9,10 +9,10 @@ def canUnlockAll(boxes):
     if not isinstance(boxes, list):
         return False
 
-    if not all(isinstance(box, list) for box in boxes):
-        return False
-
     if len(boxes) == 0:
+        return True
+
+    if not all(isinstance(box, list) for box in boxes):
         return False
 
     unlockedBoxes = [0]
