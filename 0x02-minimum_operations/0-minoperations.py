@@ -1,9 +1,13 @@
 #!/usr/bin/python3
+"""Minimum Operations to print n times of a letter (H)"""
+
 COPY_ALL_PASTE = "copy_all_paste"
 PASTE = "paste"
 
 
 def operation(op, oldNumH, numH, numOp, n):
+    """It does two operations: copy all and paste or paste"""
+
     if op == COPY_ALL_PASTE:
         numOp += 2
         oldNumH = numH
@@ -40,6 +44,9 @@ def operation(op, oldNumH, numH, numOp, n):
 
 
 def minOperations(n):
+    """Returns the min num of operations to
+    result exactly in n times H chars"""
+
     oldNumH = 1
 
     if n == oldNumH:
