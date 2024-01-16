@@ -49,7 +49,7 @@ def minOperations(n):
 
     oldNumH = 1
 
-    if n == oldNumH or n <= 0:
+    if type(n) is not int or n < 2:
         return 0
 
     numH = 2
@@ -58,8 +58,11 @@ def minOperations(n):
     if n == numH:
         return numOp
 
-    numOp1 = operation(COPY_ALL_PASTE, oldNumH, numH, numOp, n)
-    numOp2 = operation(PASTE, oldNumH, numH, numOp, n)
+    try:
+        numOp1 = operation(COPY_ALL_PASTE, oldNumH, numH, numOp, n)
+        numOp2 = operation(PASTE, oldNumH, numH, numOp, n)
+    except Exception:
+        return 0
 
     if numOp1 == -1 and numOp2 == -1:
         return 0
