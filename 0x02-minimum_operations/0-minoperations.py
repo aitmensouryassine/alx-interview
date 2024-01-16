@@ -1,4 +1,4 @@
-#!/usr/bin/pyhon3
+#!/usr/bin/python3
 COPY_ALL_PASTE = "copy_all_paste"
 PASTE = "paste"
 
