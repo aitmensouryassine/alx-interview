@@ -19,7 +19,9 @@ def operation(op, oldNumH, numH, numOp, n):
         else:
             numOp1 = operation(COPY_ALL_PASTE, oldNumH, numH, numOp, n)
             numOp2 = operation(PASTE, oldNumH, numH, numOp, n)
-            if numOp1 == -1:
+            if numOp1 == -1 and numOp2 == -1:
+                return -1
+            elif numOp1 == -1:
                 return numOp2
             elif numOp2 == -1:
                 return numOp1
@@ -35,7 +37,9 @@ def operation(op, oldNumH, numH, numOp, n):
         else:
             numOp1 = operation(COPY_ALL_PASTE, oldNumH, numH, numOp, n)
             numOp2 = operation(PASTE, oldNumH, numH, numOp, n)
-            if numOp1 == -1:
+            if numOp1 == -1 and numOp2 == -1:
+                return -1
+            elif numOp1 == -1:
                 return numOp2
             elif numOp2 == -1:
                 return numOp1
