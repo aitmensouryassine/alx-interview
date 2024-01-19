@@ -8,12 +8,12 @@ def minOperations(n):
 
     facts = [0]
     x = n
-    i = n - 1
+    div = 2
 
-    while i > 0:
-        if x % i == 0:
-            facts.append(x/i)
-            x = i
-        i -= 1
+    while x > 1:
+        while x % div == 0:
+            facts.append(div)
+            x = x / div
+        div += 1
 
     return int(sum(facts))
