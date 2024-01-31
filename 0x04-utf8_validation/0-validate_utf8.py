@@ -2,28 +2,35 @@
 """UTF-8 Validation"""
 
 
+def getNumOfOnes(num):
+    if (num & 0b10000000) == 0:
+        return 1
+    elif (num & 0b11100000) == 0b11000000:
+        return 2
+    elif (num & 0b11110000) == 0b11100000:
+        return 3
+    elif (num & 0b11111000) == 0b11110000:
+        return 4
+    else:
+        return False
+
+
 def validUTF8(data):
-    i = j = 0
+    i = num_of_ones = 0
 
     while i < len(data):
-        bi = format(data[i], '08b')
+        num = data[i]
 
-        if bi.startswith("110"):
-            j = 1
-        elif bi.startswith("1110"):
-            j = 2
-        elif bi.startswith("11110"):
-            j = 3
-        else:
-            i += 1
+        num_of_ones = getNumOfOnes(num)
+        if not num_of_ones:
+            return False
 
-        while j:
+        while num_of_ones > 1:
             i += 1
-            if i >= len(data):
+            if i >= len(data) or (data[i] & 0b11000000) != 0b10000000:
                 return False
-            bi = format(data[i], '08b')
-            if not bi.startswith('10'):
-                return False
-            j -= 1
+            num_of_ones -= 1
+
+        i += 1
 
     return True
