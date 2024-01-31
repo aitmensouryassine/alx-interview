@@ -25,9 +25,12 @@ def validUTF8(data):
         if not num_of_ones:
             return False
 
+        if i + num_of_ones > len(data):
+            return False
+
         while num_of_ones > 1:
             i += 1
-            if i >= len(data) or (data[i] & 0b11000000) != 0b10000000:
+            if (data[i] & 0b11000000) != 0b10000000:
                 return False
             num_of_ones -= 1
 
