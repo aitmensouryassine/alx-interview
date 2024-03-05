@@ -1,12 +1,12 @@
-#!/user/bin/python3
+#!/usr/bin/python3
 """Island Perimeter Problem"""
 
 
 def search_land(grid):
     """Searches for land"""
     visited = set()
-    for x in range(1, len(grid) - 1):
-        for y in range(1, len(grid[0]) - 1):
+    for x in range(len(grid)):
+        for y in range(len(grid[x])):
             if grid[x][y]:
                 return calc_perimeter(grid, x, y, visited)
     return 0
@@ -18,7 +18,8 @@ def calc_perimeter(grid, x, y, visited):
         if cell is in visited: skip
         if cell == 1: go to top, left, bottom, right => recursion
     """
-    if grid[x][y] == 0:
+    if x >= len(grid) or y >= len(grid[x]) or x < 0 or y < 0 \
+       or grid[x][y] == 0:
         return 1
 
     if (x, y) in visited:
@@ -35,5 +36,5 @@ def calc_perimeter(grid, x, y, visited):
 
 
 def island_perimeter(grid):
-    """Calculated the perimeter of an island"""
+    """Calculates the perimeter of an island"""
     return search_land(grid)
