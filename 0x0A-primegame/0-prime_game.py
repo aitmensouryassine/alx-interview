@@ -2,7 +2,7 @@
 """Prime Number Game"""
 
 
-def primeNumbers(n):
+def primes(n):
     """Returns a list of prime nums <= n"""
     prime = [True for i in range(n+1)]
     p = 2
@@ -15,15 +15,15 @@ def primeNumbers(n):
 
 
 def isWinner(x, nums):
-    score = 0
-    i = 0
+    """Determines the winner"""
 
-    while i < x:
-        if len(primeNumbers(nums[i])) % 2:
-            score += 1
-        else:
-            score -= 1
-        i += 1
+    # memoization
+    allPrimes = primes(max(nums))
+
+    score = 0
+    for i in range(x):
+        score = score + 1 if len([n for n in allPrimes if n <= nums[i]]) % 2 \
+            else score - 1
 
     if score == 0:
         return None
